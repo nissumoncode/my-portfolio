@@ -1,26 +1,205 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
+/*
+ * Class-based dark mode, managed exclusively by next-themes (shadcn standard).
+ * No other theme mechanism exists in this project.
+ */
+@custom-variant dark (&:is(.dark *));
+
+/* ------------------------------------------------------------------ */
+/* Theme tokens                                                        */
+/* Identity: midnight navy #090D1C · surfaces #111A33                  */
+/*           electric violet #6A5BFF · cyan #27D9F2                    */
+/*           soft white #F7F8FF · secondary text #AAB4CE               */
+/* ------------------------------------------------------------------ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7f8ff;
+  --foreground: #10152e;
+  --card: #ffffff;
+  --card-foreground: #10152e;
+  --popover: #ffffff;
+  --popover-foreground: #10152e;
+  --primary: #5448ee;
+  --primary-hover: #4537e0;
+  --primary-foreground: #ffffff;
+  --secondary: #eef0fa;
+  --secondary-foreground: #2a3153;
+  --muted: #eef0fa;
+  --muted-foreground: #5c667f;
+  --accent: #eef0fa;
+  --accent-foreground: #10152e;
+  --destructive: #d93a63;
+  --destructive-foreground: #ffffff;
+  --border: #e1e4f2;
+  --input: #e1e4f2;
+  --ring: #6a5bff;
+  --radius: 0.75rem;
+
+  /* Brand constants — shared across both themes */
+  --brand-violet: #6a5bff;
+  --brand-cyan: #27d9f2;
+
+  /* Ambient glow strength (softer in light mode) */
+  --glow-violet: rgba(106, 91, 255, 0.16);
+  --glow-cyan: rgba(7, 144, 184, 0.12);
+
+  /* Gradient headline (darker cyan in light mode for contrast) */
+  --brand-gradient: linear-gradient(93deg, #5448ee 0%, #0790b8 100%);
 }
 
+.dark {
+  --background: #090d1c;
+  --foreground: #f7f8ff;
+  --card: #111a33;
+  --card-foreground: #f7f8ff;
+  --popover: #131d3b;
+  --popover-foreground: #f7f8ff;
+  --primary: #7e70ff;
+  --primary-hover: #9489ff;
+  --primary-foreground: #0a0e22;
+  --secondary: #18224a;
+  --secondary-foreground: #c9d1ea;
+  --muted: #131c3d;
+  --muted-foreground: #aab4ce;
+  --accent: #18224a;
+  --accent-foreground: #f7f8ff;
+  --destructive: #ff5c7c;
+  --destructive-foreground: #0a0e22;
+  --border: rgba(170, 180, 206, 0.14);
+  --input: rgba(170, 180, 206, 0.18);
+  --ring: #6a5bff;
+  --primary-foreground: #ffffff;
+  --secondary-foreground: #c9d1ea;
+  --accent-foreground: #f7f8ff;
+  --destructive-foreground: #ffffff;
+
+  --glow-violet: rgba(106, 91, 255, 0.34);
+  --glow-cyan: rgba(39, 217, 242, 0.18);
+
+  --brand-gradient: linear-gradient(93deg, #8b7eff 0%, #27d9f2 100%);
+}
+
+/* Expose tokens to Tailwind utilities (shadcn mapping + brand extras) */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-violet-brand: var(--brand-violet);
+  --color-cyan-brand: var(--brand-cyan);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Reused entrance/hover animations */
+@theme {
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-fade-in: fade-in 0.9s ease-out both;
+  --animate-float: float 8s ease-in-out infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom utilities */
+@utility text-gradient {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility glow-violet {
+  background: radial-gradient(closest-side, var(--glow-violet), transparent 70%);
+}
+
+@utility glow-cyan {
+  background: radial-gradient(closest-side, var(--glow-cyan), transparent 70%);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Sticky navbar clearance when jumping to #section anchors */
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--brand-violet);
+    color: #ffffff;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
