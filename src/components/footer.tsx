@@ -15,7 +15,7 @@ export function Footer() {
         <div className="flex flex-col items-center gap-6 text-center sm:flex-row sm:justify-between sm:text-left">
           <div className="space-y-1">
             <p className="text-lg font-bold tracking-tight">
-              {profile.name.split(" ")[0]}
+              {profile.name}
               <span className="text-gradient">.</span>
             </p>
             <p className="text-sm text-muted-foreground">
@@ -23,25 +23,16 @@ export function Footer() {
               {" · "}
               Built with Next.js, Tailwind CSS &amp; shadcn/ui
             </p>
+            <p>Designed & Built by Sumon</p>
           </div>
           <SocialLinks links={profile.socials} />
-          <Button
-            variant="outline"
-            size="sm"
-            asChild
-            className="rounded-full"
-          >
+          <Button variant="outline" size="sm" asChild className="rounded-full">
             <Link href="#home">
               Back to top
               <ArrowUpIcon aria-hidden="true" />
             </Link>
           </Button>
         </div>
-        <Separator className="my-6 opacity-60" />
-        <p className="text-center text-xs text-muted-foreground">
-          Some links and personal details on this site are clearly-labeled
-          placeholders pending real content.
-        </p>
       </div>
     </footer>
   );

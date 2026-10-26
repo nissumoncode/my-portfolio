@@ -13,13 +13,11 @@ import {
 import { profile } from "@/data/profile";
 
 const facts = [
-  // 🚧 PLACEHOLDER location — real value expected in src/data/profile.ts
   {
     icon: MapPinIcon,
     label: "Location",
-    value: `${profile.location} (placeholder)`,
+    value: profile.location,
   },
-  // 🚧 PLACEHOLDER email
   {
     icon: MailIcon,
     label: "Email",
@@ -32,7 +30,11 @@ export function About() {
     <Section id="about">
       <SectionHeading
         eyebrow="About"
-        title={<>About <span className="text-gradient">me</span></>}
+        title={
+          <>
+            About <span className="text-gradient">me</span>
+          </>
+        }
         description="A quick introduction — who I am, how I work, and where to find me."
       />
 
@@ -48,8 +50,8 @@ export function About() {
           ))}
         </div>
 
-        <Card className="gap-6">
-          <CardHeader>
+        <Card className="w-full min-w-0 gap-4 overflow-hidden p-2 lg:-translate-y-30">
+          <CardHeader className="px-4 pt-4 pb-2">
             <div className="flex items-center gap-2.5">
               <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
                 <UserRoundIcon aria-hidden="true" className="size-4" />
@@ -57,7 +59,7 @@ export function About() {
               <CardTitle className="text-base">Quick profile</CardTitle>
             </div>
           </CardHeader>
-          <CardContent className="space-y-5">
+          <CardContent className="min-w-0 space-y-4 px-4 pb-4">
             <dl className="space-y-3">
               {facts.map((fact) => (
                 <div
@@ -80,7 +82,7 @@ export function About() {
               ))}
             </dl>
 
-            {/* 🚧 PLACEHOLDER: resume PDF from data/profile.ts (resumeUrl) */}
+            {/* Resume download button */}
             {profile.resumeUrl ? (
               <Button className="w-full" asChild>
                 <a href={profile.resumeUrl} download>
@@ -101,8 +103,7 @@ export function About() {
                   </span>
                 </TooltipTrigger>
                 <TooltipContent>
-                  Placeholder — add public/resume.pdf and set `resumeUrl` in
-                  src/data/profile.ts to enable this
+                  Add your resume PDF to enable the download.
                 </TooltipContent>
               </Tooltip>
             )}

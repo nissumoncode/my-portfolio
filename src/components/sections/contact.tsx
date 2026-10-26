@@ -10,7 +10,10 @@ import { profile } from "@/data/profile";
 
 export function Contact() {
   return (
-    <Section id="contact" className="relative overflow-hidden border-b border-border">
+    <Section
+      id="contact"
+      className="relative overflow-hidden border-b border-border"
+    >
       <div
         aria-hidden="true"
         className="pointer-events-none absolute top-0 left-1/2 h-80 w-[36rem] -translate-x-1/2 rounded-full glow-violet blur-3xl"
@@ -18,7 +21,11 @@ export function Contact() {
 
       <SectionHeading
         eyebrow="Contact"
-        title={<>Let&apos;s work <span className="text-gradient">together</span></>}
+        title={
+          <>
+            Let&apos;s work <span className="text-gradient">together</span>
+          </>
+        }
         description="The fastest way to reach me is by email — or connect with me on any platform below."
         align="center"
       />
@@ -32,17 +39,22 @@ export function Contact() {
           </a>
         </Button>
 
-        <SocialLinks links={profile.socials} className="[&>a]:h-10 [&>a]:w-10" />
+        <SocialLinks
+          links={profile.socials.filter(
+            (social) => social.label.toLowerCase() !== "whatsapp",
+          )}
+          className="[&>a]:h-10 [&>a]:w-10"
+        />
 
         {/* Phone / WhatsApp support — shown only when real numbers exist.
             🚧 Both are null in src/data/profile.ts, so they render as
             clearly labeled placeholders (no fake dialable links). */}
-        <Card className="w-full max-w-md py-5">
+        <Card className="w-full max-w-md border-border/70 bg-card/80 py-6 shadow-lg backdrop-blur-sm">
           <CardContent className="space-y-3">
             <p className="text-center text-xs font-medium tracking-wide text-muted-foreground uppercase">
-              Other channels
+              Direct Contact
             </p>
-            <div className="flex flex-wrap justify-center gap-2">
+            <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2">
               {profile.phone ? (
                 <Button variant="outline" size="sm" asChild>
                   <a href={`tel:${profile.phone.replace(/[^+\d]/g, "")}`}>
@@ -74,9 +86,6 @@ export function Contact() {
                 </Badge>
               )}
             </div>
-            <p className="text-center text-xs text-muted-foreground">
-              Add real numbers via `phone` / `whatsapp` in src/data/profile.ts
-            </p>
           </CardContent>
         </Card>
       </div>

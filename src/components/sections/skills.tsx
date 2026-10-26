@@ -1,4 +1,9 @@
-import { CodeIcon, ServerIcon, TerminalIcon, MonitorSmartphoneIcon } from "lucide-react";
+import {
+  CodeIcon,
+  ServerIcon,
+  TerminalIcon,
+  MonitorSmartphoneIcon,
+} from "lucide-react";
 
 import { Section } from "@/components/section";
 import { SectionHeading } from "@/components/section-heading";
@@ -32,7 +37,11 @@ export function Skills() {
     <Section id="skills" className="border-b border-border">
       <SectionHeading
         eyebrow="Skills"
-        title={<>Tools of the <span className="text-gradient">trade</span></>}
+        title={
+          <>
+            Tools of the <span className="text-gradient">trade</span>
+          </>
+        }
         description="The technologies I use to design, build, and ship web applications."
       />
 
@@ -40,9 +49,9 @@ export function Skills() {
         {skills.map((category: SkillCategory) => (
           <Card
             key={category.name}
-            className="group gap-4 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10"
+            className="group min-w-0 gap-4 overflow-hidden p-2 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10"
           >
-            <CardHeader>
+            <CardHeader className="px-4 pt-4 pb-2">
               <div className="flex items-center gap-3">
                 <CategoryIcon name={category.name} />
                 <h3 className="font-semibold tracking-tight">
@@ -50,7 +59,7 @@ export function Skills() {
                 </h3>
               </div>
             </CardHeader>
-            <CardContent>
+            <CardContent className="px-4 pb-4">
               <ul className="flex flex-wrap gap-2">
                 {category.skills.map((skill) => (
                   <li key={skill}>

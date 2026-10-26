@@ -1,25 +1,24 @@
 /**
- * 🚧 PLACEHOLDER SKILLS — replace with your real skill set.
- * The "graphical" rendering (category cards + badge chips) is generic,
- * so only the strings below need editing.
+ * Skills configuration for the portfolio.
+ * Update the categories and skills as needed.
  */
 import type { SkillCategory } from "./types";
 
 export const skills: SkillCategory[] = [
   {
     name: "Languages",
-    skills: ["TypeScript", "JavaScript", "Python", "SQL"],
+    skills: ["HTML", "CSS", "TypeScript", "JavaScript"],
   },
   {
     name: "Frontend",
-    skills: ["React", "Next.js", "Tailwind CSS", "Redux", "Zustand"],
+    skills: ["React", "Next.js", "Tailwind CSS"],
   },
   {
     name: "Backend",
-    skills: ["Node.js", "Express", "REST APIs", "PostgreSQL", "Prisma"],
+    skills: ["Node.js", "Express", "REST APIs", "GraphQL API"],
   },
   {
     name: "Tools & Platforms",
-    skills: ["Git", "GitHub Actions", "Vercel", "Docker", "Figma", "Vitest"],
+    skills: ["MongoDB", "Git", "GitHub", "Vercel", "Figma"],
   },
 ];

@@ -86,8 +86,8 @@ export function Navbar() {
           href="#home"
           className="rounded-md text-lg font-bold tracking-tight focus-visible:ring-[3px] focus-visible:ring-ring/40 focus-visible:outline-none"
         >
-          {profile.name.split(" ")[0]}
-          <span className="text-gradient">.</span>
+          {profile.name}
+          <span className="text-gradient"></span>
         </Link>
 
         {/* Desktop links */}
@@ -112,7 +112,10 @@ export function Navbar() {
                     <span
                       aria-hidden="true"
                       className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full"
-                      style={{ background: "linear-gradient(93deg, var(--brand-violet), var(--brand-cyan))" }}
+                      style={{
+                        background:
+                          "linear-gradient(93deg, var(--brand-violet), var(--brand-cyan))",
+                      }}
                     />
                   )}
                 </Link>
@@ -138,12 +141,10 @@ export function Navbar() {
             <SheetContent side="right">
               <SheetHeader>
                 <SheetTitle>
-                  {profile.name.split(" ")[0]}
+                  {profile.name}
                   <span className="text-gradient">.</span>
                 </SheetTitle>
-                <SheetDescription>
-                  {profile.role} portfolio
-                </SheetDescription>
+                <SheetDescription>{profile.role} portfolio</SheetDescription>
               </SheetHeader>
               <Separator />
               <nav aria-label="Mobile" className="flex flex-col gap-1 px-4">

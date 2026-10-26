@@ -1,6 +1,8 @@
 import type { SocialLink } from "@/data/types";
 import { Mail, LinkIcon } from "lucide-react";
+import { FaXTwitter, FaWhatsapp } from "react-icons/fa6";
 import { GitHubIcon, LinkedInIcon } from "@/components/icons";
+
 import {
   Tooltip,
   TooltipContent,
@@ -8,15 +10,26 @@ import {
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
-function IconForLabel({ label, className }: { label: string; className?: string }) {
+function IconForLabel({
+  label,
+  className,
+}: {
+  label: string;
+  className?: string;
+}) {
   switch (label.toLowerCase()) {
     case "github":
       return <GitHubIcon className={className} />;
-    case "linkedin":
-      return <LinkedInIcon className={className} />;
+    case "x":
+    case "twitter":
+      return <FaXTwitter aria-hidden="true" className={className} />;
+    case "whatsapp":
+      return <FaWhatsapp aria-hidden="true" className={className} />;
     case "email":
     case "mail":
       return <Mail aria-hidden="true" className={className} />;
+    case "linkedin":
+      return <LinkedInIcon className={className} />;
     default:
       return <LinkIcon aria-hidden="true" className={className} />;
   }

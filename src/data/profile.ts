@@ -1,34 +1,40 @@
 /**
- * 🚧 PLACEHOLDER PROFILE — every field below is fictional.
- * Replace with your real details before deployment.
- * Real asset expected: public/avatar.jpg, public/resume.pdf
+ * Personal profile configuration.
+ * Update contact details, social links, and resume as needed.
  */
 import type { Profile } from "./types";
 
 export const profile: Profile = {
   // PLACEHOLDER name/role/tagline — replace with your own
-  name: "Sam Sterling",
+
+  name: "Nafiz Iqbal Sumon",
   role: "Full-Stack Developer",
   tagline:
-    "I turn ideas into fast, accessible web experiences — from pixel to production.",
+    "Building end-to-end web applications with modern frontend and backend technologies.",
+
   bio: [
-    "PLACEHOLDER — I'm a developer focused on building clean, performant interfaces with React and Next.js, and pairing them with pragmatic backends.",
-    "PLACEHOLDER — Off the keyboard I enjoy contributing to open source, writing about what I learn, and mentoring developers who are starting out.",
+    "I'm a Full-Stack Developer passionate about building modern, responsive, and user-friendly web applications. I work with HTML, CSS, JavaScript, React, Next.js, and Tailwind CSS to build engaging frontend experiences, along with Node.js and MongoDB to develop backend functionality and manage data.",
+    "I enjoy creating complete web applications, from designing clean and intuitive user interfaces to building server-side features and integrating databases. I'm continuously learning, improving my development skills, and exploring new technologies to turn ideas into practical web solutions.",
   ],
-  // 🚧 PLACEHOLDER contact details (email/phone/location) — replace with your own.
-  // Phone/WhatsApp stay null until you provide real numbers.
-  email: "hello@example.com",
-  phone: null,
-  whatsapp: null,
-  location: "City, Country",
+  // Contact information
+
+  email: "nissumon13@gmail.com",
+  phone: "01312388111",
+  whatsapp: "8801312388111",
+  location: "Rajshahi, Bangladesh",
+
   // Real portrait photo provided by the owner (public/image.png)
   avatarUrl: "/image.png",
-  // PLACEHOLDER resume — drop your CV at public/resume.pdf and update
+
+  // Add your resume PDF .
   resumeUrl: null,
-  // PLACEHOLDER social links — "url" must be replaced with real profiles
+
+  // Social media profiles
   socials: [
-    { label: "GitHub", url: "#" },
-    { label: "LinkedIn", url: "#" },
-    { label: "Email", url: "#" },
+    { label: "GitHub", url: "https://github.com/nissumoncode" },
+    { label: "LinkedIn", url: "https://www.linkedin.com/in/YOUR_USERNAME" },
+    { label: "X", url: "https://x.com/NafizIqbalSumon" },
+    { label: "Email", url: "mailto:nissumon13@gmail.com" },
+    { label: "WhatsApp", url: "https://wa.me/8801312388111" },
   ],
 };

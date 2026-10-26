@@ -15,7 +15,11 @@ export function Experience() {
     <Section id="experience" className="border-b border-border">
       <SectionHeading
         eyebrow="Experience"
-        title={<>Work <span className="text-gradient">experience</span></>}
+        title={
+          <>
+            Work <span className="text-gradient">experience</span>
+          </>
+        }
         description="Roles I've held and what I delivered — placeholder entries until real employment history is provided."
       />
 
@@ -58,7 +62,10 @@ export function Experience() {
                   ))}
                 </ul>
 
-                <ul className="flex flex-wrap gap-1.5" aria-label="Technologies used">
+                <ul
+                  className="flex flex-wrap gap-1.5"
+                  aria-label="Technologies used"
+                >
                   {item.tech.map((tech) => (
                     <li key={tech}>
                       <Badge variant="outline" className="font-normal">
@@ -67,10 +74,6 @@ export function Experience() {
                     </li>
                   ))}
                 </ul>
-
-                <p className="text-xs text-muted-foreground/70 italic">
-                  Placeholder entry — edit in src/data/experience.ts
-                </p>
               </CardContent>
             </Card>
           </li>

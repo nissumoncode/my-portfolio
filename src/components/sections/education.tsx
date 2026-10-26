@@ -15,7 +15,11 @@ export function Education() {
     <Section id="education">
       <SectionHeading
         eyebrow="Education"
-        title={<>Academic <span className="text-gradient">journey</span></>}
+        title={
+          <>
+            Academic <span className="text-gradient">journey</span>
+          </>
+        }
         description="My academic background and formal training — placeholder entries until real credentials are provided."
       />
 
@@ -49,9 +53,6 @@ export function Education() {
                 </p>
                 <p className="text-sm leading-relaxed text-muted-foreground">
                   {item.note}
-                </p>
-                <p className="text-xs text-muted-foreground/70 italic">
-                  Placeholder entry — edit in src/data/education.ts
                 </p>
               </CardContent>
             </Card>
