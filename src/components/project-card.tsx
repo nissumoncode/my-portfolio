@@ -4,7 +4,7 @@ import { ArrowUpRightIcon } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import type { Project } from "@/data/types";
+import type { Project } from "@/data/types/types";
 import { cn } from "@/lib/utils";
 
 // Bespoke brand-family gradient per card — tasteful CSS placeholder art
@@ -18,9 +18,18 @@ const thumbs = [
   "linear-gradient(135deg, #5b21b6 0%, #6a5bff 100%)",
 ];
 
-export function ProjectCard({ project, index }: { project: Project; index: number }) {
+export function ProjectCard({
+  project,
+  index,
+}: {
+  project: Project;
+  index: number;
+}) {
   // Two-letter monogram from the title's letters ("TaskFlow" → "TA")
-  const monogram = project.title.replace(/[^a-zA-Z]/g, "").slice(0, 2).toUpperCase();
+  const monogram = project.title
+    .replace(/[^a-zA-Z]/g, "")
+    .slice(0, 2)
+    .toUpperCase();
 
   return (
     <Link
@@ -46,7 +55,10 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
             />
           ) : (
             <>
-              <span aria-hidden="true" className="text-4xl font-bold tracking-tight text-white/90">
+              <span
+                aria-hidden="true"
+                className="text-4xl font-bold tracking-tight text-white/90"
+              >
                 {monogram}
               </span>
               <span className="absolute bottom-2 right-3 rounded-full bg-black/30 px-2 py-0.5 text-[10px] font-medium text-white/85 backdrop-blur-sm">

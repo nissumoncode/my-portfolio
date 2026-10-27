@@ -4,7 +4,7 @@ import { ArrowUpIcon } from "lucide-react";
 import { SocialLinks } from "@/components/social-links";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import { profile } from "@/data/profile";
+import profile from "@/data/profile.json";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -18,14 +18,18 @@ export function Footer() {
               {profile.name}
               <span className="text-gradient">.</span>
             </p>
+
             <p className="text-sm text-muted-foreground">
               © {year} {profile.name}
               {" · "}
               Built with Next.js, Tailwind CSS &amp; shadcn/ui
             </p>
-            <p>Designed & Built by Sumon</p>
+
+            <p>Designed &amp; Built by Sumon</p>
           </div>
+
           <SocialLinks links={profile.socials} />
+
           <Button variant="outline" size="sm" asChild className="rounded-full">
             <Link href="#home">
               Back to top

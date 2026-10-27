@@ -11,7 +11,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { profile } from "@/data/profile";
+import profile from "@/data/profile.json";
 
 const floatingChips = [
   "React",
@@ -134,6 +134,7 @@ export function Hero() {
               />
             </div>
           </div>
+
           {/* Technology labels */}
           {floatingChips.map((chip, i) => {
             const positions = [

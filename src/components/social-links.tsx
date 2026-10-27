@@ -1,4 +1,4 @@
-import type { SocialLink } from "@/data/types";
+import type { SocialLink } from "@/data/types/types";
 import { Mail, LinkIcon } from "lucide-react";
 import { FaXTwitter, FaWhatsapp } from "react-icons/fa6";
 import { GitHubIcon, LinkedInIcon } from "@/components/icons";

@@ -4,7 +4,7 @@ import { Section } from "@/components/section";
 import { SectionHeading } from "@/components/section-heading";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { education } from "@/data/education";
+import education from "@/data/education.json";
 
 /**
  * Education timeline. Every entry below is a 🚧 placeholder —

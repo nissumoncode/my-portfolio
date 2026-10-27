@@ -13,7 +13,8 @@ import {
   ScrollTextIcon,
 } from "lucide-react";
 
-import { projects } from "@/data/projects";
+import projects from "@/data/projects.json";
+import type { Project } from "@/data/types/types";
 import { ProjectCard } from "@/components/project-card";
 import { GitHubIcon } from "@/components/icons";
 import { Badge } from "@/components/ui/badge";
@@ -21,12 +22,8 @@ import { Button } from "@/components/ui/button";
 
 type Params = Promise<{ id: string }>;
 
-/**
- * Pre-renders every project at build time (fully static, no backend).
- * Unknown ids fall through to the custom 404 page.
- */
 export function generateStaticParams() {
-  return projects.map((project) => ({ id: project.id }));
+  return projects.map((project: Project) => ({ id: project.id }));
 }
 
 export async function generateMetadata({
@@ -35,8 +32,10 @@ export async function generateMetadata({
   params: Params;
 }): Promise<Metadata> {
   const { id } = await params;
-  const project = projects.find((p) => p.id === id);
+  const project = projects.find((p: Project) => p.id === id);
+
   if (!project) return { title: "Project not found" };
+
   return {
     title: `${project.title} — Case study`,
     description: project.tagline,
@@ -71,12 +70,18 @@ function DetailHeading({
 
 export default async function ProjectPage({ params }: { params: Params }) {
   const { id } = await params;
-  const project = projects.find((p) => p.id === id);
+  const project = projects.find((p: Project) => p.id === id);
+
   if (!project) notFound();
 
-  const related = projects.filter((p) => p.id !== project.id).slice(0, 3);
-  // Two-letter monogram from the title's letters ("TaskFlow" → "TA")
-  const monogram = project.title.replace(/[^a-zA-Z]/g, "").slice(0, 2).toUpperCase();
+  const related = projects
+    .filter((p: Project) => p.id !== project.id)
+    .slice(0, 3);
+
+  const monogram = project.title
+    .replace(/[^a-zA-Z]/g, "")
+    .slice(0, 2)
+    .toUpperCase();
 
   return (
     <article className="mx-auto max-w-4xl px-4 py-10 sm:px-6 sm:py-16">
@@ -92,7 +97,6 @@ export default async function ProjectPage({ params }: { params: Params }) {
         </Link>
       </Button>
 
-      {/* Header */}
       <header className="mt-8 flex flex-col gap-4">
         <div className="flex flex-wrap items-center gap-2">
           <Badge className="font-mono">Case study</Badge>
@@ -102,16 +106,16 @@ export default async function ProjectPage({ params }: { params: Params }) {
             </Badge>
           )}
         </div>
+
         <h1 className="text-3xl font-extrabold tracking-tight sm:text-5xl">
           {project.title}
           <span className="text-gradient">.</span>
         </h1>
+
         <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
           {project.tagline}
         </p>
 
-        {/* Actions: real links only. `null` URLs render an explicit
-            "not configured yet" badge — never a dead "#" button. 🚧 */}
         <div className="flex flex-wrap items-center gap-3 pt-1">
           {project.liveUrl ? (
             <Button asChild>
@@ -130,6 +134,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
               Live demo — URL not configured yet
             </Badge>
           )}
+
           {project.githubUrl ? (
             <Button variant="outline" asChild>
               <a
@@ -150,10 +155,11 @@ export default async function ProjectPage({ params }: { params: Params }) {
         </div>
       </header>
 
-      {/* Thumbnail */}
       <div
         className="relative mt-10 flex h-56 items-center justify-center overflow-hidden rounded-3xl border border-border sm:h-72"
-        style={{ background: thumbs[projects.indexOf(project) % thumbs.length] }}
+        style={{
+          background: thumbs[projects.indexOf(project) % thumbs.length],
+        }}
       >
         {project.screenshots[0] ? (
           <Image
@@ -164,22 +170,19 @@ export default async function ProjectPage({ params }: { params: Params }) {
             className="object-cover"
           />
         ) : (
-          <span
-            aria-hidden="true"
-            className="text-6xl font-bold text-white/90"
-          >
+          <span aria-hidden="true" className="text-6xl font-bold text-white/90">
             {monogram}
           </span>
         )}
       </div>
+
       {!project.screenshots[0] && (
         <p className="mt-3 text-sm text-muted-foreground/70 italic">
-          Thumbnail placeholder — drop screenshots into
-          {" "}
+          Thumbnail placeholder — drop screenshots into{" "}
           <span className="font-mono">
             /public/images/projects/{project.id}/
           </span>{" "}
-          and list them in src/data/projects.ts
+          and list them in src/data/projects.json
         </p>
       )}
 
@@ -189,6 +192,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
             <DetailHeading icon={<ScrollTextIcon aria-hidden="true" />}>
               Overview
             </DetailHeading>
+
             <div className="mt-4 space-y-4 leading-relaxed text-muted-foreground">
               <p>{project.overview}</p>
               <p>
@@ -202,6 +206,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
             <DetailHeading icon={<ListChecksIcon aria-hidden="true" />}>
               Key features
             </DetailHeading>
+
             <ul className="mt-4 space-y-2.5 text-muted-foreground">
               {project.features.map((feature, i) => (
                 <li key={i} className="flex gap-2.5">
@@ -220,6 +225,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
             <DetailHeading icon={<CircleAlertIcon aria-hidden="true" />}>
               Challenges &amp; solutions
             </DetailHeading>
+
             <ul className="mt-4 space-y-4 leading-relaxed text-muted-foreground">
               {project.challenges.map((challenge, i) => (
                 <li
@@ -240,6 +246,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
             <DetailHeading icon={<LightbulbIcon aria-hidden="true" />}>
               Future improvements
             </DetailHeading>
+
             <ul className="mt-4 space-y-2.5 text-muted-foreground">
               {project.ideas.map((idea, i) => (
                 <li key={i} className="flex gap-2.5">
@@ -255,9 +262,9 @@ export default async function ProjectPage({ params }: { params: Params }) {
           </section>
         </div>
 
-        {/* Tech stack sidebar */}
         <aside className="h-fit md:border-l md:border-border md:pl-8">
           <h2 className="font-semibold tracking-tight">Tech stack</h2>
+
           <ul className="mt-3 flex flex-wrap gap-1.5 md:flex-col md:items-start">
             {project.techStack.map((tech) => (
               <li key={tech}>
@@ -270,12 +277,12 @@ export default async function ProjectPage({ params }: { params: Params }) {
         </aside>
       </div>
 
-      {/* Related projects */}
       <section className="mt-16 border-t border-border pt-10">
         <div className="flex items-baseline justify-between gap-4">
           <h2 className="text-xl font-semibold tracking-tight">
             More projects
           </h2>
+
           <Button variant="link" size="sm" asChild>
             <Link href="/#projects">
               View all
@@ -283,6 +290,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
             </Link>
           </Button>
         </div>
+
         <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {related.map((p, i) => (
             <ProjectCard key={p.id} project={p} index={i} />

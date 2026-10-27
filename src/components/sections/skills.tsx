@@ -9,8 +9,8 @@ import { Section } from "@/components/section";
 import { SectionHeading } from "@/components/section-heading";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { skills } from "@/data/skills";
-import type { SkillCategory } from "@/data/types";
+import skills from "@/data/skills.json";
+import type { SkillCategory } from "@/data/types/types";
 
 const categoryIcons: Record<string, typeof CodeIcon> = {
   Languages: CodeIcon,
@@ -21,6 +21,7 @@ const categoryIcons: Record<string, typeof CodeIcon> = {
 
 function CategoryIcon({ name }: { name: string }) {
   const Icon = categoryIcons[name] ?? TerminalIcon;
+
   return (
     <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary/15 to-cyan-brand/15 text-primary">
       <Icon aria-hidden="true" className="size-5" />
@@ -29,8 +30,8 @@ function CategoryIcon({ name }: { name: string }) {
 }
 
 /**
- * Skills grouped by category. The strings come from src/data/skills.ts
- * (🚧 placeholders) — no fabricated proficiency levels or claims.
+ * Skills grouped by category.
+ * Data comes from src/data/skills.json.
  */
 export function Skills() {
   return (
@@ -59,6 +60,7 @@ export function Skills() {
                 </h3>
               </div>
             </CardHeader>
+
             <CardContent className="px-4 pb-4">
               <ul className="flex flex-wrap gap-2">
                 {category.skills.map((skill) => (

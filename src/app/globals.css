@@ -57,7 +57,7 @@
   --popover-foreground: #f7f8ff;
   --primary: #7e70ff;
   --primary-hover: #9489ff;
-  --primary-foreground: #0a0e22;
+  --primary-foreground: #ffffff;
   --secondary: #18224a;
   --secondary-foreground: #c9d1ea;
   --muted: #131c3d;
@@ -65,14 +65,10 @@
   --accent: #18224a;
   --accent-foreground: #f7f8ff;
   --destructive: #ff5c7c;
-  --destructive-foreground: #0a0e22;
+  --destructive-foreground: #ffffff;
   --border: rgba(170, 180, 206, 0.14);
   --input: rgba(170, 180, 206, 0.18);
   --ring: #6a5bff;
-  --primary-foreground: #ffffff;
-  --secondary-foreground: #c9d1ea;
-  --accent-foreground: #f7f8ff;
-  --destructive-foreground: #ffffff;
 
   --glow-violet: rgba(106, 91, 255, 0.34);
   --glow-cyan: rgba(39, 217, 242, 0.18);
@@ -160,7 +156,11 @@
 }
 
 @utility glow-violet {
-  background: radial-gradient(closest-side, var(--glow-violet), transparent 70%);
+  background: radial-gradient(
+    closest-side,
+    var(--glow-violet),
+    transparent 70%
+  );
 }
 
 @utility glow-cyan {

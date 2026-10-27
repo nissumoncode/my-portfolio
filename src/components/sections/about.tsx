@@ -10,7 +10,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { profile } from "@/data/profile";
+import profile from "@/data/profile.json";
 
 const facts = [
   {
@@ -50,7 +50,7 @@ export function About() {
           ))}
         </div>
 
-        <Card className="w-full min-w-0 gap-4 overflow-hidden p-2 lg:-translate-y-30">
+        <Card className="w-full min-w-0 gap-4 overflow-hidden p-2 lg:-translate-y-20">
           <CardHeader className="px-4 pt-4 pb-2">
             <div className="flex items-center gap-2.5">
               <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">

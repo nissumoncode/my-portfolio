@@ -6,7 +6,7 @@ import { SocialLinks } from "@/components/social-links";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { profile } from "@/data/profile";
+import profile from "@/data/profile.json";
 
 export function Contact() {
   return (

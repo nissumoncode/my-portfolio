@@ -4,13 +4,16 @@ import { Section } from "@/components/section";
 import { SectionHeading } from "@/components/section-heading";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { experience } from "@/data/experience";
+import experience from "@/data/experience.json";
+import type { ExperienceItem } from "@/data/types/types";
 
 /**
  * Experience timeline. Every entry below is a 🚧 placeholder —
- * replace with real work history in src/data/experience.ts.
+ * replace with real work history in src/data/experience.json.
  */
 export function Experience() {
+  const experienceItems: ExperienceItem[] = experience;
+
   return (
     <Section id="experience" className="border-b border-border">
       <SectionHeading
@@ -24,7 +27,7 @@ export function Experience() {
       />
 
       <ol className="relative space-y-6 border-l border-border pl-6">
-        {experience.map((item, i) => (
+        {experienceItems.map((item, i) => (
           <li key={i} className="relative">
             <span
               aria-hidden="true"

@@ -5,7 +5,7 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { profile } from "@/data/profile";
+import profile from "@/data/profile.json";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

@@ -19,7 +19,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { profile } from "@/data/profile";
+import profile from "@/data/profile.json";
 import { cn } from "@/lib/utils";
 
 const links = [
@@ -28,6 +28,7 @@ const links = [
   { href: "#skills", label: "Skills" },
   { href: "#education", label: "Education" },
   { href: "#experience", label: "Experience" },
+  { href: "/resume", label: "Resume" },
   { href: "#projects", label: "Projects" },
   { href: "#contact", label: "Contact" },
 ] as const;
@@ -40,17 +41,17 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeId, setActiveId] = useState<string>("home");
 
-  // Scroll-aware navbar surface
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
+
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Scroll-spy: highlight the section currently in view (home page only)
   useEffect(() => {
     if (!isHome) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -59,10 +60,12 @@ export function Navbar() {
       },
       { rootMargin: "-45% 0px -50% 0px" },
     );
+
     for (const id of sectionIds) {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     }
+
     return () => observer.disconnect();
   }, [isHome]);
 
@@ -81,20 +84,19 @@ export function Navbar() {
         aria-label="Primary"
         className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4 sm:px-6"
       >
-        {/* Brand */}
         <Link
-          href="#home"
+          href={hrefFor("#home")}
           className="rounded-md text-lg font-bold tracking-tight focus-visible:ring-[3px] focus-visible:ring-ring/40 focus-visible:outline-none"
         >
           {profile.name}
           <span className="text-gradient"></span>
         </Link>
 
-        {/* Desktop links */}
         <ul className="hidden items-center gap-0.5 text-sm md:flex">
           {links.map((l) => {
             const id = l.href.slice(1);
             const active = isHome && activeId === id;
+
             return (
               <li key={l.href}>
                 <Link
@@ -126,7 +128,7 @@ export function Navbar() {
 
         <div className="flex items-center gap-1.5">
           <ThemeToggle />
-          {/* Mobile navigation drawer */}
+
           <Sheet>
             <SheetTrigger asChild>
               <Button
@@ -138,6 +140,7 @@ export function Navbar() {
                 <MenuIcon aria-hidden="true" className="size-[18px]" />
               </Button>
             </SheetTrigger>
+
             <SheetContent side="right">
               <SheetHeader>
                 <SheetTitle>
@@ -146,11 +149,14 @@ export function Navbar() {
                 </SheetTitle>
                 <SheetDescription>{profile.role} portfolio</SheetDescription>
               </SheetHeader>
+
               <Separator />
+
               <nav aria-label="Mobile" className="flex flex-col gap-1 px-4">
                 {links.map((l) => {
                   const id = l.href.slice(1);
                   const active = isHome && activeId === id;
+
                   return (
                     <SheetClose asChild key={l.href}>
                       <Link
@@ -169,6 +175,7 @@ export function Navbar() {
                   );
                 })}
               </nav>
+
               <SheetFooter>
                 <Separator />
                 <div className="flex items-center justify-between">
